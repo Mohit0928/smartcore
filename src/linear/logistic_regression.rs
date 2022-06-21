@@ -55,7 +55,6 @@
 use std::cmp::Ordering;
 use std::fmt::Debug;
 
-#[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
 use crate::api::{Predictor, SupervisedEstimator};
@@ -67,7 +66,7 @@ use crate::optimization::first_order::{FirstOrderOptimizer, OptimizerResult};
 use crate::optimization::line_search::Backtracking;
 use crate::optimization::FunctionOrder;
 
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Clone)]
 /// Solver options for Logistic regression. Right now only LBFGS solver is supported.
 pub enum LogisticRegressionSolverName {
@@ -76,7 +75,7 @@ pub enum LogisticRegressionSolverName {
 }
 
 /// Logistic Regression parameters
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Serialize, Deserialize)]
 #[derive(Debug, Clone)]
 pub struct LogisticRegressionParameters<T: RealNumber> {
     /// Solver to use for estimation of regression coefficients.
@@ -86,7 +85,7 @@ pub struct LogisticRegressionParameters<T: RealNumber> {
 }
 
 /// Logistic Regression
-#[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
+#[derive(Serialize, Deserialize)]
 #[derive(Debug)]
 pub struct LogisticRegression<T: RealNumber, M: Matrix<T>> {
     coefficients: M,
